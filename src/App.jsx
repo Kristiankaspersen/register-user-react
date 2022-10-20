@@ -1,30 +1,66 @@
 //import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [forename, setForename] = useState("")
+  const [surname, setSurname] = useState("")
+  const [password, setPassword] = useState("")
+  const [repeatPassword, setRepeatPassword] = useState("")
+
+  const addUsername = (event) => {
+    setUsername(event.target.value)
+  }
+
+  const addEmail = (event) => {
+    setEmail(event.target.value)
+
+  }
+
+  const addForename = (event) => {
+    setForename(event.target.value)
+  }
+
+  const addSurname = (event) => {
+    setSurname(event.target.value)
+  }
+
+  const addPassword = (event) => {
+    setPassword(event.target.value)
+  }
+
+  const addRepeatPassword = (event) => {
+    setRepeatPassword(event.target.value)
+  }
+
   return (
+    <>
+    {JSON.stringify(password)}
     <form  method="get">
       <label htmlFor='username'>Username:</label>
-      <input type="text" name="username" id="username" />
+      <input type="text" name="username" id="username" value={username} onChange={addUsername} />
 
       <label htmlFor="email">Email:</label>
-      <input type="email" name="email" id="email" />
+      <input type="email" name="email" id="email" value={email} onChange={addEmail} />
 
-      <label htmlFor="forname">Forname: </label>
-      <input type="text" name="forname" id="forname" />
+      <label htmlFor="forename">Forename: </label>
+      <input type="text" name="forename" id="forename" value={forename} onChange={addForename}/>
 
-      <label htmlFor="lastname">Lastname:</label>
-      <input type="text" name="lastname" id="forname"/>
+      <label htmlFor="surname">Lastname:</label>
+      <input type="text" name="surname" id="forename" value={surname} onChange={addSurname}/>
 
       <label htmlFor="password">Password: </label>
-      <input type="password" name="password" id="password" />
+      <input type="password" name="password" id="password" value={password} onChange={addPassword} />
 
       <label htmlFor="repeatPassword">Repeat password: </label>
-      <input type="password" name="repeatPassword" id="repeatPassword" />
-      
+      <input type="password" name="repeatPassword" id="repeatPassword" value={repeatPassword}  onChange={addRepeatPassword} />
+
       <label htmlFor="submit">Submit:</label>
       <button>submit</button>
     </form>
+    </>
   );
 }
 
