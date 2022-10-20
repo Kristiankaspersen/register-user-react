@@ -38,7 +38,7 @@ function App() {
   return (
     <>
     {JSON.stringify(password)}
-    <form  method="get">
+    <form  method="post" id="register">
       <label htmlFor='username'>Username:</label>
       <input type="text" name="username" id="username" value={username} onChange={addUsername} />
 
@@ -49,7 +49,7 @@ function App() {
       <input type="text" name="forename" id="forename" value={forename} onChange={addForename}/>
 
       <label htmlFor="surname">Lastname:</label>
-      <input type="text" name="surname" id="forename" value={surname} onChange={addSurname}/>
+      <input type="text" name="surname" id="surname" value={surname} onChange={addSurname}/>
 
       <label htmlFor="password">Password: </label>
       <input type="password" name="password" id="password" value={password} onChange={addPassword} />
