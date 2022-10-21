@@ -12,8 +12,10 @@ function App() {
 
   const [submit, setSubmitted] = useState(false)
   const [error, setError] = useState(false)
+  const [error2, setError2] = useState(false)
 
   const addUsername = (event) => {
+    setSubmitted(false)
     setUsername(event.target.value)
   }
 
@@ -43,8 +45,13 @@ function App() {
     e.preventDefault();
     if (username === '' || email === '' || forename === '' || surname === '' || password === '' || repeatPassword === '') {
       setSubmitted(false);
-      errorMessage()
+      errorMissingFields()
       setError(true);
+
+    } else if (repeatPassword !== password) {
+      setSubmitted(false);
+      errorPassword()
+      setError2(true);
 
     } else {
       setSubmitted(true);
@@ -58,25 +65,32 @@ function App() {
     return(
       <div className="success"
         >
-        <h4>User {username} successfully registered!!</h4>
+        <h4>You have successfully registered {username}</h4>
       </div>
-    );;
+    );
   };
  
   // Showing error message if error is true
-  const errorMessage = () => {
+  const errorMissingFields = () => {
     return (
       <div className="error">
-        <h4>Please enter all the fields</h4>
+        <h4>Enter all fields</h4>
       </div>
     );
   };
 
+  const errorPassword = () => {
+    return (
+      <div className="error">
+        <h4>Password don't match</h4>
+      </div>
+    );
+    
+  }; 
+
   return (
-    <>
-    {JSON.stringify(password)}
-   
-    {error ? errorMessage() : ""}
+    <> 
+    {error ? errorMissingFields(): error2 ? errorPassword() : ""}
     {submit ? successMessage(): ""}
     <form method="post" id="register">
       <label htmlFor='username'>Username:</label>
@@ -88,7 +102,7 @@ function App() {
       <label htmlFor="forename">Forename: </label>
       <input type="text" name="forename" id="forename" value={forename} onChange={addForename}/>
 
-      <label htmlFor="surname">Lastname:</label>
+      <label htmlFor="surname">Surname:</label>
       <input type="text" name="surname" id="surname" value={surname} onChange={addSurname}/>
 
       <label htmlFor="password">Password: </label>
@@ -98,7 +112,7 @@ function App() {
       <input type="password" name="repeatPassword" id="repeatPassword" value={repeatPassword}  onChange={addRepeatPassword} />
 
       <label htmlFor="submit">Submit</label>
-      <button onClick={handleSubmit}>submit</button>
+      <button onClick={handleSubmit} id="submitUser">submit</button>
     </form>
     </>
   );
