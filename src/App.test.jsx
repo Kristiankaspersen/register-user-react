@@ -1,8 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
+import Register from "./components/Register"
 
 it('should display the error message "enter all fields"', () => {
-  render(<App />)
+  render(<Register />)
 
   //expect(document.getElementById('username')).toHaveValue("")
   expect(screen.getByLabelText(/username/i)).toHaveValue("")
@@ -18,7 +19,7 @@ it('should display the error message "enter all fields"', () => {
 })
 
 it('should display the success message"', () => {
-  render(<App />)
+  render(<Register />)
 
   expect(screen.getByLabelText(/username/i)).toHaveValue("")
   fireEvent.change(screen.getByLabelText(/username/i), {target: {value: 'dog'}})
@@ -52,7 +53,7 @@ it('should display the success message"', () => {
 })
 
 it("should display don't match", () => {
-  render(<App />)
+  render(<Register />)
 
   expect(screen.getByLabelText(/username/i)).toHaveValue("")
   fireEvent.change(screen.getByLabelText(/username/i), {target: {value: 'dog'}})
