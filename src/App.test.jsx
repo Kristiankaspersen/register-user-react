@@ -51,6 +51,40 @@ it('should display the success message"', () => {
 
 })
 
+it("should display don't match", () => {
+  render(<App />)
+
+  expect(screen.getByLabelText(/username/i)).toHaveValue("")
+  fireEvent.change(screen.getByLabelText(/username/i), {target: {value: 'dog'}})
+  expect(screen.getByLabelText(/username/i)).toHaveValue("dog")
+
+  expect(screen.getByLabelText(/email/i)).toHaveValue("")
+  fireEvent.change(screen.getByLabelText(/email/i), {target: {value: 'dog@dog'}})
+  expect(screen.getByLabelText(/email/i)).toHaveValue("dog@dog")
+
+  expect(screen.getByLabelText(/forename/i)).toHaveValue("")
+  fireEvent.change(screen.getByLabelText(/forename/i), {target: {value: 'test'}})
+  expect(screen.getByLabelText(/forename/i)).toHaveValue("test")
+
+  expect(screen.getByLabelText(/surname/i)).toHaveValue("")
+  fireEvent.change(screen.getByLabelText(/surname/i), {target: {value: 'testesen'}})
+  expect(screen.getByLabelText(/surname/i)).toHaveValue("testesen")
+
+  expect(document.getElementById('password')).toHaveValue("")
+  fireEvent.change(document.getElementById("password"), {target: {value: 'password'}})
+  expect(document.getElementById('password')).toHaveValue("password")
+
+  expect(document.getElementById('repeatPassword')).toHaveValue("")
+  fireEvent.change(document.getElementById('repeatPassword'), {target: {value: "noMatch"}})
+  expect(document.getElementById('repeatPassword')).toHaveValue("noMatch")
+  
+
+
+  fireEvent.click(screen.getByText("submit"))
+  expect(screen.getByText(/Password don't match/i)).toHaveTextContent("Password don't match")
+
+})
+
 
 //Sjekker om formen er der
 // test('renders the form', () => {
